@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Watchlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -15,17 +18,9 @@
     <input type="text" name="search" id="search">
     <button id="search-button" type="submit">Search</button>
     
-    <main>
-        <div id="movie-list">
-            <div class="movie-list-item">
-                <img src="" alt="">
-                <h3 class="title"></h3>
-                <p class="rating"></p>
-                <p class="runtime"></p>
-                <p class="genre"></p>
-                <p class="add-to-watchlist">+ Watchlist</p>
-            </div>
-        </div>
+    <main id="results">
+        <h3 id="searchError"></h3>
+        <div id="movie-list"></div>
         <p>Start exploring</p>
     </main>
 

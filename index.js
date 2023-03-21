@@ -1,3 +1,5 @@
+// edge-case notes: if movie has no poster, replace with another image
+
 const searchBtn = document.querySelector("#search-button")
 const searchInput = document.querySelector("#search")
 const movieList = document.querySelector("#movie-list")
@@ -8,8 +10,12 @@ searchBtn.addEventListener("click", getMovieList)
 
 function getMovieList() {
     const searchQuery = searchInput.value
-
-    fetch(`${url}&s=${searchQuery}`)
+    
+    // check if input is empty, tell user to enter input
+    if (searchInput.value === "") {
+        document.querySelector("#searchError").innerText = "please enter a movie title"
+    } else {
+        fetch(`${url}&s=${searchQuery}`)
         .then(res => res.json())
         .then(movies => {
             console.log(movies)
@@ -18,6 +24,8 @@ function getMovieList() {
                 getMovieInfo(movie.Title)
             })
         })
+    }
+   
     searchInput.value = ""
 }
 
@@ -29,12 +37,14 @@ function getMovieInfo(movie) {
         .then(film => {
             movieList.innerHTML += `
             <div class="movie-list-item">
-                <img src="${film.Poster}" alt="Film poster for ${film.Title}">
-                <h3 class="title">${film.Title}</h3>
-                <p class="rating">${film.Ratings[0].Value}</p>
-                <p class="runtime">${film.Runtime}</p>
-                <p class="genre">${film.Genre}</p>
-                <p class="add-to-watchlist">+ Watchlist</p>
+                <img src="${film.Poster}" alt="Film poster for ${film.Title}" class="poster">
+                <div class="movie-info">
+                    <h3 class="title">${film.Title}</h3>
+                    <p class="runtime">${film.Runtime}</p>
+                    <p class="genre">${film.Genre}</p>
+                    <p class="rating">${film.Ratings[0].Value}</p>
+                    <p class="add-to-watchlist">+ Watchlist</p>
+                </div>
             </div>
             `
         }
