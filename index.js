@@ -13,24 +13,32 @@ function getMovieList() {
         .then(res => res.json())
         .then(movies => {
             console.log(movies)
-            movieList.innerHTML = ""
 
-            movies.Search.map(movie => {
-                console.log(movie)
-                movieList.innerHTML += `
-                <div class="movie-list-item">
-                    <img src="${movie.Poster}" alt="">
-                    <h3 class="title">${movie.Title}</h3>
-                </div>
-                `
+            movies.Search.forEach(movie => {
+                getMovieInfo(movie.Title)
             })
         })
+    searchInput.value = ""
 }
 
-function getMovieInfo() {
-    fetch(`${url}&t=${searchQuery}`)
+// get the data for each individual movie
+// pass individual movie data into the dom
+function getMovieInfo(movie) {
+    fetch(`${url}&t=${movie}`)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(film => {
+            movieList.innerHTML += `
+            <div class="movie-list-item">
+                <img src="${film.Poster}" alt="Film poster for ${film.Title}">
+                <h3 class="title">${film.Title}</h3>
+                <p class="rating">${film.Ratings[0].Value}</p>
+                <p class="runtime">${film.Runtime}</p>
+                <p class="genre">${film.Genre}</p>
+                <p class="add-to-watchlist">+ Watchlist</p>
+            </div>
+            `
+        }
+        )
 }
 
 
