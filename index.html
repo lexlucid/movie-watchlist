@@ -11,20 +11,36 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header>
+    <div class="container">
+
+    <header id="header">
         <h1>Find your film</h1>
         <a href="watchlist.html">My Watchlist</a>
     </header>
-    <input type="text" name="search" id="search">
-    <button id="search-button" type="submit">Search</button>
+
+    <form action="search" id="search">
+        <input type="text" name="search" id="search-input" placeholder="Find a movie">
+        <button id="search-button" type="submit">Search</button>
+    </form>
     
-    <main id="results">
+    <div id="results">
         <h3 id="searchError"></h3>
-        <div id="movie-list"></div>
+        <div id="movie-list">
+            <div class="movie-list-item">
+                <img src="img/movie-poster.jpeg" alt="Film poster for ${film.Title}" class="poster">
+                <div class="movie-info">
+                    <h3 class="title">Steven Universe: The Movie</h3>
+                    <p class="runtime">87 min</p>
+                    <p class="genre">Animation, Action, Adventure</p>
+                    <p class="rating">8.2 / 10</p>
+                    <p class="add-to-watchlist">Add to Watchlist</p>
+                </div>
+            </div>
+        </div>
         <p>Start exploring</p>
-    </main>
+    </div>
 
-
+    </div>
 
 
 <script src="index.js"></script>
